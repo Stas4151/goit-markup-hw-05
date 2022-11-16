@@ -99,6 +99,7 @@ header {
 
 .site-nav .link {
     color: var(--main-text-color);
+
 }
 
 .site-nav .link:hover, 
@@ -106,23 +107,19 @@ header {
 .auth-nav .link:hover,
 .auth-nav .link:focus {
     color: var(--second-color);
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.link.current {
-    color: var(--second-color);
-}
-
-.current {
+.current-study,
+.current-portfolio {
     position: relative;
 
     display: block;
     padding: 10px 20px;
     text-decoration: none;
-
-    color: currentColor;
 }
 
-.current::after {
+.current-study::after {
     content: "";
 
     position: absolute;
@@ -135,16 +132,21 @@ header {
     
     background: #2196F3;
     border-radius: 2px;
-
-    /* transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    opacity: 0; */
-    transform: scaleX(0);
-    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.current:hover::after {
-    /* opacity: 1; */
-    transform: scaleX(1);
+.current-portfolio::after {
+    content: "";
+
+    position: absolute;
+
+    display: block;
+    width: 78px;
+    height: 4px;
+    left: 20px;
+    top: 65px;
+
+    background: #2196F3;
+    border-radius: 2px;
 }
 
 .auth-nav .link {
@@ -274,6 +276,7 @@ header {
 .hero-button:hover,
 .hero-button:focus {
     background-color: #188CE8;
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .backdrop {
@@ -283,6 +286,8 @@ header {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.2);
+    opacity: 1;
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .backdrop.is-hidden {
@@ -295,33 +300,35 @@ header {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
+    display: flex;
+    justify-content: flex-end;
     min-width: 528px;
     min-height: 581px;
     border-radius: 4px;
 
     background-color: var(--primary-site-color);
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 2px 1px rgba(0, 0, 0, 0.2);
+    
+    content: scale(1);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.close-button {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-top: 8px;
-    margin-right: 8px;
-}
+
 
 .close-modal {
     display: flex;
+    align-items: center;
+   
+    margin-top: 8px;
+    margin-right: 8px;
     width: 30px;
     height: 30px;
-    align-items: center;
-    justify-content: center;
-
+    
     background: var(--primary-site-color);
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 50%;
+
+    cursor: pointer;
 }
 
 /* Особливості */
@@ -415,27 +422,26 @@ header {
 
 .about-bg {
     position: absolute;
-    width: 370px;
+    width: 100%;
     height: 70px;
     left: 0;
-    top: 224px;
+    bottom: 0;
     
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: rgba(47, 48, 58, 0.8);
 }
 
 .about-paragraph {
-padding: 27px 27px;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: calc(16/14);
 
-font-family: 'Roboto';
-font-style: normal;
-font-weight: 700;
-font-size: 14px;
-line-height: calc(16/14);
-text-align: center;
-letter-spacing: 0.03em;
-text-transform: uppercase;
-    
-color: var(--general-site-color);
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+        
+    color: var(--general-site-color);
 }
 
 /* Наша команда */
@@ -524,6 +530,7 @@ color: var(--general-site-color);
 .social-item:hover,
 .social-item:focus {
     background-color: var(--second-color);
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .social-link {
@@ -539,6 +546,7 @@ color: var(--general-site-color);
 .social-link:hover,
 .social-link:focus {
     fill: var(--primary-site-color);
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
  /* Постійні клієнти */
@@ -574,6 +582,7 @@ color: var(--general-site-color);
 .clients-goup:hover,
 .clients-goup:focus {
     border-color: var(--second-color);
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
  .clients-card {
@@ -581,7 +590,7 @@ color: var(--general-site-color);
     justify-content: center;
     align-items: center;
     width: 170px;
-    height: 90px;
+    height: 92px;
     border: 1px solid var(--links-color);
     border-radius: 4px;
 
@@ -590,7 +599,9 @@ color: var(--general-site-color);
 
 .clients-card:hover,
 .clients-card:focus {
-    fill: var(--second-color); 
+    fill: var(--second-color);
+    border: 1px solid var(--second-color);
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 
@@ -619,13 +630,13 @@ color: var(--general-site-color);
 }
 
 .footer-adress {
-margin-top: 20px;
-margin-bottom: 62px;
+    margin-top: 20px;
+    margin-bottom: 62px;
 
-font-weight: 400;
-font-size: 14px;
-line-height: calc(24/14);
-letter-spacing: 0.03em;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: calc(24/14);
+    letter-spacing: 0.03em;
 
 }
 
@@ -665,6 +676,7 @@ letter-spacing: 0.03em;
 .social-item-join:hover,
 .social-item-join:focus {
     background-color: var(--second-color);
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer-socials {
@@ -699,6 +711,7 @@ letter-spacing: 0.03em;
 .adress .mail:hover,
 .adress .mail:hover{
     color: var(--second-color);
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .footer {
@@ -804,6 +817,7 @@ letter-spacing: 0.03em;
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12),
         0px 4px 4px rgba(0, 0, 0, 0.06),
         1px 4px 6px rgba(0, 0, 0, 0.16);
+        transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .project-thumb {
@@ -813,18 +827,18 @@ letter-spacing: 0.03em;
 
 .project-overlay {
     position: absolute;
-    top: 100%;
+    left: 0;
     bottom: 0;
     width: 100%;
     height: 100%;
     background: rgba(33, 150, 243, 0.9);
 
-    transform: translateY(0);
+    transform: translateY(101%);
     transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .project-link:hover .project-overlay {
-    transform: translateY(-100%);
+    transform: translateY(0);
     transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -841,7 +855,7 @@ letter-spacing: 0.03em;
     font-size: 18px;
     line-height: calc(28/18);
     
-    letter-spacing: 0.03em;
+    letter-spacing: 0.04em;
     
     color: var(--primary-site-color);
 }
